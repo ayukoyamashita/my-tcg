@@ -39,4 +39,10 @@ const cards: CardDatabase = {
   }
 };
 
+export const elementIcons = {
+	grass: "🌿",
+	fire: "🔥",
+	water: "💧",
+};
+
 export default cards;
