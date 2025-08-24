@@ -1,7 +1,7 @@
 import styles from "./Card.module.css";
 import { getCardById } from "../../utils/cardUtils";
 
-interface CardProps {
+type CardProps = {
 	cardId: string;
 }
 
