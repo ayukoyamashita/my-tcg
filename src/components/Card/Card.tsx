@@ -2,13 +2,21 @@ import styles from "./Card.module.css";
 
 import { getCardById } from "../../utils/cardUtils";
 import { elementIcons } from "../../constants/cards";
+import type { Move } from "../../types/card";
 
 type CardProps = {
+  playerType: "player" | "cpu";
   cardId: string;
   currentHp: number;
+  onAttack?: (move: Move) => void;
 };
 
-function Card({ cardId, currentHp }: CardProps) {
+function Card({
+  playerType,
+  cardId,
+  currentHp,
+  onAttack,
+}: CardProps) {
   const card = getCardById(cardId);
 
   if (!card) {
@@ -26,7 +34,7 @@ function Card({ cardId, currentHp }: CardProps) {
       <ul className={styles.moves}>
         {card.moves.map((move) => (
           <li key={move.name} className={styles.move}>
-            <button type="button">
+            <button type="button" onClick={() => onAttack?.(move)}>
               <span className={styles.moveName}>{move.name}</span>
               <span className={styles.moveDamage}>{move.damage}</span>
             </button>
