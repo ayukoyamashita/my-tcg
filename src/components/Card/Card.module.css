@@ -1,19 +1,43 @@
+.background {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(80, 80, 80, 0.5);
+	z-index: 10;
+}
+
+.background.inFocus {
+	display: block;
+}
+
 .container {
+	position: relative;
 	width: 160px;
 	height: 224px;
 	background-color: #fff;
 	border-radius: 6px;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 	padding: 10px;
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+.container.inFocus {
+	z-index: 1000;
+	transform: scale(1.5);
 }
 .container.grass {
-	background-color: rgba(155, 204, 80, 0.3);
+	background-color: rgb(200, 230, 160);
 }
 .container.fire {
-	background-color: rgba(253, 125, 36, 0.3);
+	background-color: rgb(255, 200, 160);
 }
 .container.water {
-	background-color: rgba(69, 146, 196, 0.3);
+	background-color: rgb(170, 210, 240);
+}
+.container:hover {
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .header {
