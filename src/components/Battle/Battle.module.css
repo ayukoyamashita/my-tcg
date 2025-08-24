@@ -11,3 +11,15 @@ body {
 	display: grid;
 	grid-template-rows: 1fr 1fr;
 }
+
+.opponentContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.playerContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

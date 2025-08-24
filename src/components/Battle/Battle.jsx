@@ -5,10 +5,10 @@ function Battle() {
   return (
     <div className={styles.container}>
       <div className={styles.opponentContainer}>
-        <Card />
+        <Card cardId="nyaoha" />
       </div>
       <div className={styles.playerContainer}>
-        <Card />
+        <Card cardId="hogeta" />
       </div>
     </div>
   );
