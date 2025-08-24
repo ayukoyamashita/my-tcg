@@ -1,5 +1,7 @@
+import "./Battle.css";
+
 function Battle() {
-	return <div>Battle</div>;
+	return <div className="battle">Battle</div>;
 }
 
 export default Battle;
