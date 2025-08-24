@@ -1,4 +1,5 @@
 import styles from "./Card.module.css";
+import { useState } from "react";
 import { getCardById } from "../../utils/cardUtils";
 import { elementIcons } from "../../constants/cards";
 
@@ -8,6 +9,7 @@ type CardProps = {
 
 function Card({ cardId }: CardProps) {
   const card = getCardById(cardId);
+  const [currentHp, setCurrentHp] = useState<number>(card?.hp ?? 0);
 
   if (!card) {
     return <div className={styles.container}>カードが見つかりません</div>;

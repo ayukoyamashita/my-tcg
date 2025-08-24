@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import { useState } from "react";
 
 function Battle() {
-  const [isPlayerTurn, setIsPlayerTurn] = useState(true); // プレイヤーのターンから開始
+  const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(true);
   return (
     <div className={styles.container}>
       <div className={styles.turnIndicator}>
