@@ -6,3 +6,16 @@
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 	padding: 10px;
 }
+.container.grass {
+	background-color: rgba(155, 204, 80, 0.3);
+}
+.container.fire {
+	background-color: rgba(253, 125, 36, 0.3);
+}
+.container.water {
+	background-color: rgba(69, 146, 196, 0.3);
+}
+
+.header {
+	display: flex;
+}
