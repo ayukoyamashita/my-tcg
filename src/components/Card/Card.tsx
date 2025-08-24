@@ -1,8 +1,17 @@
 import styles from "./Card.module.css";
 import { getCardById } from "../../utils/cardUtils";
 
-function Card({ cardId }) {
+interface CardProps {
+	cardId: string;
+}
+
+function Card({ cardId }: CardProps) {
 	const card = getCardById(cardId);
+	
+	if (!card) {
+		return <div className={styles.container}>カードが見つかりません</div>;
+	}
+	
 	return <div className={styles.container}>
 		<div className={styles.name}>{card.name}</div>
 		<div className={styles.element}>{card.element}</div>
