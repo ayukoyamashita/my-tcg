@@ -7,7 +7,10 @@ import { useTurnIndicator } from "../../hooks/useTurnIndicator";
 
 function Battle() {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(true);
-  const { showPlayerTurnIndicator, showOpponentTurnIndicator } = useTurnIndicator(isPlayerTurn);
+  const { showPlayerTurnIndicator, showOpponentTurnIndicator } =
+    useTurnIndicator(isPlayerTurn);
+  const [moveName, setMoveName] = useState<string>("");
+  const [showMoveName, setShowMoveName] = useState<boolean>(false);
 
   const playerCard = getCardById("hogeta");
   const cpuCard = getCardById("nyaoha");
@@ -18,6 +21,11 @@ function Battle() {
   const handlePlayerAttack = (move: Move) => {
     if (!isPlayerTurn) return;
 
+    setMoveName(move.name);
+    setShowMoveName(true);
+    setTimeout(() => {
+      setShowMoveName(false);
+    }, 2000);
     setCpuHp((prevHp) => Math.max(0, prevHp - move.damage));
     setIsPlayerTurn(false);
   };
@@ -25,15 +33,20 @@ function Battle() {
   return (
     <div className={styles.container}>
       {showPlayerTurnIndicator && (
-        <div className={`${styles.turnIndicator} ${styles.playerTurn} ${styles.slideIn}`}>
+        <div
+          className={`${styles.turnIndicator} ${styles.playerTurn} ${styles.slideIn}`}
+        >
           自分のターン
         </div>
       )}
       {showOpponentTurnIndicator && (
-        <div className={`${styles.turnIndicator} ${styles.opponentTurn} ${styles.slideIn}`}>
+        <div
+          className={`${styles.turnIndicator} ${styles.opponentTurn} ${styles.slideIn}`}
+        >
           相手のターン
         </div>
       )}
+      {showMoveName && <div className={styles.moveName}>{moveName}</div>}
       <div className={styles.battleField}>
         <div className={styles.opponentContainer}>
           <Card playerType="cpu" cardId="nyaoha" currentHp={cpuHp} />

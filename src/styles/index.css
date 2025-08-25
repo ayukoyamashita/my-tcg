@@ -15,3 +15,7 @@ button:disabled {
 	color: currentColor;
 	cursor: default;
 }
+
+* {
+	box-sizing: border-box;
+}

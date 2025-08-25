@@ -10,6 +10,7 @@ body {
 	margin: auto;
 	background-color: #fff;
 	box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+	overflow: hidden;
 }
 
 .turnIndicator {
@@ -72,6 +73,30 @@ body {
 	100% {
 		opacity: 0;
 		visibility: hidden;
+	}
+}
+
+.moveName {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) rotate(-10deg);
+	width: 120%;
+	text-align: center;
+	padding: 0.5rem;
+	font-size: 3rem;
+	font-weight: 800;
+	background-color: rgb(251, 160, 96);
+	color: #fff;
+	animation: zoomIn 0.3s ease-out forwards;
+}
+
+@keyframes zoomIn {
+	0% {
+		transform: translate(-50%, -50%) rotate(-10deg) scale(0);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(-10deg) scale(1);
 	}
 }
 
