@@ -6,30 +6,40 @@ import type { Move } from "../../types/card";
 
 function Battle() {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(true);
-  
+
   const playerCard = getCardById("hogeta");
   const cpuCard = getCardById("nyaoha");
-  
+
   const [playerHp] = useState<number>(playerCard?.hp ?? 0);
   const [cpuHp, setCpuHp] = useState<number>(cpuCard?.hp ?? 0);
-  
+
   const handlePlayerAttack = (move: Move) => {
     if (!isPlayerTurn) return;
-    
-    setCpuHp(prevHp => Math.max(0, prevHp - move.damage));
+
+    setCpuHp((prevHp) => Math.max(0, prevHp - move.damage));
     setIsPlayerTurn(false);
   };
-  
+
   return (
     <div className={styles.container}>
-      <div className={styles.turnIndicator}>
-        {isPlayerTurn ? "あなたのターン" : "相手のターン"}
+      <div className={`${styles.turnIndicator} ${styles.playerTurn}`}>
+        自分のターン
       </div>
-      <div className={styles.opponentContainer}>
-        <Card playerType="cpu" cardId="nyaoha" currentHp={cpuHp} />
+			<div className={`${styles.turnIndicator} ${styles.opponentTurn}`}>
+        相手のターン
       </div>
-      <div className={styles.playerContainer}>
-        <Card playerType="player" cardId="hogeta" currentHp={playerHp} onAttack={handlePlayerAttack} />
+      <div className={styles.battleField}>
+        <div className={styles.opponentContainer}>
+          <Card playerType="cpu" cardId="nyaoha" currentHp={cpuHp} />
+        </div>
+        <div className={styles.playerContainer}>
+          <Card
+            playerType="player"
+            cardId="hogeta"
+            currentHp={playerHp}
+            onAttack={handlePlayerAttack}
+          />
+        </div>
       </div>
     </div>
   );
