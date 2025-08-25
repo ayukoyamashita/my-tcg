@@ -10,7 +10,7 @@ function Battle() {
   const playerCard = getCardById("hogeta");
   const cpuCard = getCardById("nyaoha");
   
-  const [playerHp, setPlayerHp] = useState<number>(playerCard?.hp ?? 0);
+  const [playerHp] = useState<number>(playerCard?.hp ?? 0);
   const [cpuHp, setCpuHp] = useState<number>(cpuCard?.hp ?? 0);
   
   const handlePlayerAttack = (move: Move) => {

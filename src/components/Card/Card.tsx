@@ -31,10 +31,14 @@ function Card({ playerType, cardId, currentHp, onAttack }: CardProps) {
   }
 
   const handleAttack = (move: Move, event: React.MouseEvent) => {
-		event.stopPropagation();
-    if (playerType !== "player" || !inFocus) {
+		if (playerType !== "player") {
       return;
     }
+    if (!inFocus) {
+			setInFocus(true);
+      return;
+    }
+		event.stopPropagation();
 		setInFocus(false);
 		onAttack(move);
   };
