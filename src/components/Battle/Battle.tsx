@@ -3,9 +3,11 @@ import Card from "../Card/Card";
 import { useState } from "react";
 import { getCardById } from "../../utils/cardUtils";
 import type { Move } from "../../types/card";
+import { useTurnIndicator } from "../../hooks/useTurnIndicator";
 
 function Battle() {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(true);
+  const { showPlayerTurnIndicator, showOpponentTurnIndicator } = useTurnIndicator(isPlayerTurn);
 
   const playerCard = getCardById("hogeta");
   const cpuCard = getCardById("nyaoha");
@@ -22,12 +24,16 @@ function Battle() {
 
   return (
     <div className={styles.container}>
-      <div className={`${styles.turnIndicator} ${styles.playerTurn}`}>
-        自分のターン
-      </div>
-			<div className={`${styles.turnIndicator} ${styles.opponentTurn}`}>
-        相手のターン
-      </div>
+      {showPlayerTurnIndicator && (
+        <div className={`${styles.turnIndicator} ${styles.playerTurn} ${styles.slideIn}`}>
+          自分のターン
+        </div>
+      )}
+      {showOpponentTurnIndicator && (
+        <div className={`${styles.turnIndicator} ${styles.opponentTurn} ${styles.slideIn}`}>
+          相手のターン
+        </div>
+      )}
       <div className={styles.battleField}>
         <div className={styles.opponentContainer}>
           <Card playerType="cpu" cardId="nyaoha" currentHp={cpuHp} />
