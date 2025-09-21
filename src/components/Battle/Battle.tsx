@@ -5,6 +5,7 @@ import { getCardById } from "../../utils/cardUtils";
 import type { Move } from "../../types/card";
 import type { Effect } from "../../types/effect";
 import { useTurnIndicator } from "../../hooks/useTurnIndicator";
+import { useMomentState } from "../../hooks/useMomentState";
 
 function Battle() {
   const [isPlayerTurn, setIsPlayerTurn] = useState<boolean>(true);
@@ -19,7 +20,7 @@ function Battle() {
   const [playerHp] = useState<number>(playerCard?.hp ?? 0);
   const [playerEffect, setPlayerEffect] = useState<null | Effect>(null);
   const [cpuHp, setCpuHp] = useState<number>(cpuCard?.hp ?? 0);
-  const [cpuEffect, setCpuEffect] = useState<null | Effect>(null);
+  const [cpuEffect, setCpuEffect] = useMomentState<Effect>(null, 2000);
 
   const handlePlayerAttack = (move: Move) => {
     if (!isPlayerTurn) return;
