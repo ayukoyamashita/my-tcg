@@ -20,7 +20,7 @@ function Battle() {
   const [playerHp] = useState<number>(playerCard?.hp ?? 0);
   const [playerEffect, setPlayerEffect] = useState<null | Effect>(null);
   const [cpuHp, setCpuHp] = useState<number>(cpuCard?.hp ?? 0);
-  const [cpuEffect, setCpuEffect] = useMomentState<Effect>(null, 2000);
+  const [cpuEffect, setCpuEffect] = useMomentState<Effect>(null);
 
   const handlePlayerAttack = (move: Move) => {
     if (!isPlayerTurn) return;
@@ -29,7 +29,7 @@ function Battle() {
     setShowMoveName(true);
     setTimeout(() => {
       setCpuHp((prevHp) => Math.max(0, prevHp - move.damage));
-      setCpuEffect("damage");
+      setCpuEffect("damage", 1000);
       setIsPlayerTurn(false);
       setShowMoveName(false);
     }, 1000);
