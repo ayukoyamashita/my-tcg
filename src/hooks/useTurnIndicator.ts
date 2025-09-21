@@ -7,16 +7,10 @@ export const useTurnIndicator = (isPlayerTurn: boolean) => {
   useEffect(() => {
     if (isPlayerTurn) {
       setShowPlayerTurnIndicator(true);
-      const timer = setTimeout(() => {
-        setShowPlayerTurnIndicator(false);
-      }, 2000);
-      return () => clearTimeout(timer);
+			setShowOpponentTurnIndicator(false);
     } else {
       setShowOpponentTurnIndicator(true);
-      const timer = setTimeout(() => {
-        setShowOpponentTurnIndicator(false);
-      }, 2000);
-      return () => clearTimeout(timer);
+			setShowPlayerTurnIndicator(false);
     }
   }, [isPlayerTurn]);
 

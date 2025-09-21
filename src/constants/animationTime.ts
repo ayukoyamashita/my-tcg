@@ -1,0 +1,1 @@
+export const TURN_INDICATOR_TIME = 1200;
