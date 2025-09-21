@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import styles from "./Card.module.css";
 import { getCardById } from "../../utils/cardUtils";
 import { elementIcons } from "../../constants/cards";
 import type { Move } from "../../types/card";
+import type { Effect } from "../../types/effect";
 
 type BaseCardProps = {
   playerType: "player" | "cpu";
   cardId: string;
   currentHp: number;
+	currentEffect: null | Effect;
   onAttack?: (move: Move) => void;
 };
 
@@ -22,7 +24,7 @@ type CpuCardProps = BaseCardProps & {
 
 type CardProps = PlayerCardProps | CpuCardProps;
 
-function Card({ playerType, cardId, currentHp, onAttack }: CardProps) {
+function Card({ playerType, cardId, currentHp, currentEffect = null, onAttack }: CardProps) {
   const card = getCardById(cardId);
   const [inFocus, setInFocus] = useState(false);
 
@@ -51,6 +53,13 @@ function Card({ playerType, cardId, currentHp, onAttack }: CardProps) {
     setInFocus(false);
   };
 
+	const effectClass = useMemo(() => {
+		if (currentEffect === "damage") {
+			return styles.effectDamage;
+		}
+		return "";
+	}, [currentEffect]);
+
   return (
     <>
       <div
@@ -60,7 +69,7 @@ function Card({ playerType, cardId, currentHp, onAttack }: CardProps) {
       <div
         className={`${styles.container} ${styles[card.element]} ${
           inFocus ? styles.inFocus : ""
-        }`}
+        } ${effectClass}`}
         onClick={handleFocus}
       >
         <div className={styles.header}>
