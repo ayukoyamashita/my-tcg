@@ -29,9 +29,10 @@ function Battle() {
     setShowMoveName(true);
     setTimeout(() => {
       setCpuHp((prevHp) => Math.max(0, prevHp - move.damage));
-      setCpuEffect("damage", 1000);
-      setIsPlayerTurn(false);
       setShowMoveName(false);
+      setCpuEffect("damage", 1000).then(() => {
+				setIsPlayerTurn(false);
+			});
     }, 1000);
   };
 
